@@ -1,0 +1,32 @@
+.onglet-entete{
+  display: flex;
+  gap: var(--espacement-courant);
+  padding: 15px 30px;
+  background-color: var(--couleur-primaire);
+  margin-bottom: 0;
+  
+  & a{
+    color:inherit ;
+  }
+  
+  & .active{
+    text-decoration: underline;
+    color: var(--couleur-nav);
+    font-weight:bold;
+    
+  }
+} 
+@media (max-width: 820px) {
+  .onglet-entete {
+    overflow-x: auto;
+    white-space: nowrap;
+    flex-wrap: nowrap;
+  }
+  
+  .onglet-entete a {
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: auto;
+    display: inline-block;
+  }
+}

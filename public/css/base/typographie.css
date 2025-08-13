@@ -1,0 +1,46 @@
+/* Typographie*/
+/* importation des polices*/
+@import url('https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+:root{
+    /* Taille*/
+
+    --font-size-h1:32px;
+    --font-size-h2:28px;
+    --font-size-h3:20px;
+    --font-size-h4:18px;
+    --font-size-grand:22px;
+    --font-size-moyen:18px;
+    --font-size-regulier:16px;
+    --font-size-petit:14px;
+    --font-size-xs:11px;
+}
+
+h1,h2,h3,h4{
+    font-family: "Libre Caslon Text", serif;  
+}
+
+h1{
+    font-size: var(--font-size-h1);
+}
+
+h2, .h2{
+    font-size: var(--font-size-h2);
+}
+
+h3, .h3{
+    font-weight: 500;
+    font-size: var(--font-size-h3);
+}
+
+h4, .h4{
+    font-weight: 500;
+    font-size: var(--font-size-h4);
+}
+
+span{
+    font-weight: 800;
+}

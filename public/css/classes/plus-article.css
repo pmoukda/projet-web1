@@ -1,0 +1,9 @@
+.plus-article{
+  max-width: 100%;
+  width: 100%;
+ 
+  & h2{
+    border-bottom: 1px solid var(--couleur-border);
+  }
+}
+

@@ -1,0 +1,17 @@
+/*dans la fiche enchère*/
+.deuxieme_rangee{
+    & div{
+        max-width: 40ch;
+    }
+    & input{
+        height: 5ch;
+        outline: none;
+        padding: 15px; 
+        margin-top: 10px;
+    }
+    
+    & .temps{
+        color: var(--couleur-hover);
+        font-weight: bold;
+    }
+} 

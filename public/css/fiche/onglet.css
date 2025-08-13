@@ -1,0 +1,12 @@
+.onglet { 
+    display: none;
+    
+    &:first-child {
+        display: block;
+    }
+    
+    &:target {
+        display: block;
+    }
+
+}

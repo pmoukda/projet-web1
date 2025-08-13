@@ -1,0 +1,19 @@
+/* formulaire dans la fiche enchère*/
+
+.formulaire-fiche {
+    max-width: 70%;
+    box-sizing: border-box;
+    display: flex;
+    gap: var(--espacement-courant);
+    
+}
+
+
+/* Responsive */
+@media screen and (max-width: 940px) {
+    .formulaire-fiche {
+        flex-direction: column;
+        flex-wrap: wrap;
+        gap: 5px;
+    }
+}

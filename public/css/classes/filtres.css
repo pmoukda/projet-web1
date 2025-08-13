@@ -1,0 +1,78 @@
+/* section aside pour les filtres */
+
+.filtres{
+    padding: var(--espacement-courant);
+    border: 1px solid var(--couleur-border);
+    border-radius: 5px;
+    order: -1;
+    align-self: flex-start;
+    
+    & form{
+        display: flex;
+        flex-direction: column; 
+        gap: var(--espacement-minus);  
+    }
+    & .categorie{
+        display: flex;
+        flex-direction: column; 
+        gap: var(-espacement-tres-petit);
+        padding: var(--espacement-courant);
+        background-color: var(--couleur-fond);
+        margin-top: var(--espacement-courant);
+    }   
+    
+    & .categorie-titre{
+        font-size: inherit;
+        margin-bottom: var(--espacement-courant);
+    }
+    
+    & label{
+        display: flex;
+        align-items: center; 
+        font-size: var(--font-size-petit) ;
+        
+    }
+    & input[type="checkbox"]{
+        margin-right: var(--espacement-tres-tres-petit);
+    }
+    
+    & small{
+        margin-left:var(--espacement-minus);
+    }
+    
+    & input[type="text"], select{
+        min-height: 30px;
+        text-align: center;
+        border-radius: 5px;
+        outline: none;
+        border: 1px solid var(--couleur-border);
+    }
+    
+}
+
+@media screen and (max-width: 1100px) {
+    .filtres{
+       width: 500px;  
+    }
+}
+
+@media screen and (max-width:660px) {
+    .filtres{
+        width: 100%;
+        border-bottom: 1px solid var(--couleur-border);
+        margin-bottom: 20px;
+    }
+}
+@media screen and (max-width:540px) {
+    .filtres{
+        max-width: 320px;
+    }
+    
+}
+@media screen and (max-width:450px) {
+    .filtres{
+        max-width: 100%;
+        
+    }
+    
+}

@@ -1,0 +1,113 @@
+/* styliser les image de la fiche (caroussel)*/
+.caroussel{
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  position: relative;
+  padding:  var(--espacement-tres-petit);
+  background-color: var(--couleur-primaire);
+  border: 1px solid var(--couleur-border);
+  border-radius: 8px;
+  max-width: 100%;
+  flex-basis: 340px;
+  gap: var(--espacement-petitRem);
+  
+}
+
+.caroussel .zone-image {
+  position: relative;
+  width: 100%;
+}
+
+.caroussel .grande-image {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+
+.caroussel .fleches-direction {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  transform: translateY(-50%);
+  padding: 0 10px;
+  pointer-events: none;
+}
+/* fleche gauche et droite */
+.caroussel .fleche {
+  background-color: var(--couleur-secondaire);
+  color: var(--couleur-primaire);
+  border: none;
+  width: 40px;
+  height: 40px;
+  font-size:var(--font-size-h4);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.8;
+  pointer-events: auto;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.caroussel .fleche:hover {
+  transform: scale(1.1);
+  opacity: 1;
+}
+/*conteneur petite image*/
+.caroussel .miniatures {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espacement-tres-petit);
+  justify-content: center;
+}
+
+/*image petite taille*/
+.caroussel .image-petite {
+  max-width: 60px;
+  height: auto;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: transform 0.2s;
+  
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+
+@media screen and (max-width: 1200px) {
+  .caroussel{
+    padding: 10px;
+  }
+  .carrousel .fleche{
+    width: 20px;
+    height: 20px;
+  }
+}  
+@media screen and (max-width: 900px) {
+  .caroussel{
+    margin-bottom: 20px;
+    margin: 0;
+  }
+}
+@media screen and (max-width: 600px) {
+  .carrousel .fleche {
+    width: 32px;
+    height: 32px;
+    font-size: 16px;
+  }
+  
+  .carrousel.fleches {
+    padding: 0 5px;
+  }
+  
+  .carrousel .image-petite {
+    width: 48px;
+  }
+ 
+}

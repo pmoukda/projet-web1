@@ -1,0 +1,36 @@
+/* menu déroulant*/
+.menu-deroulant {
+    display: block; 
+    background-color: var(--couleur-nav);
+    position: absolute;
+    top: 100%;
+    width: max-content;
+    
+     /* donner un effet d'animation*/
+    max-height: 0;
+    overflow: hidden;
+    transform: translateY(-20px);
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+    
+    & li a{
+        display: block;
+        width: auto;
+        padding: 15px 20px;
+        
+        &:hover{
+            background-color: var(--couleur-primaire);
+            color: var(--couleur-nav);
+            text-decoration: none;  
+        }
+    } 
+} 
+.sous-menu.open > .menu-deroulant {
+  display: block;
+}
+@media screen and (max-width: 768px) {
+  .menu-deroulant {
+    position: static;
+  }
+
+}

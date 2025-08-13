@@ -1,0 +1,30 @@
+.contact{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    color: var(--couleur-primaire);
+    padding: 20px;
+    
+    & .coordonnes, 
+    & a{
+        display: inline;
+    }
+    & strong,
+    & a{
+        color: var(--couleur-coup-coeur);
+
+    }
+}
+@media screen and (max-width:870px) {
+    .contact{
+        flex-direction: column;
+        gap: 20px;
+
+    }
+}
+@media screen and (max-width:420px) {
+    .contact{
+        align-items: start;
+    }
+}

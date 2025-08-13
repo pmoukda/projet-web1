@@ -1,0 +1,42 @@
+.liste table {
+  width: 100%;
+  margin-top: 20px;
+  border-collapse: collapse;
+}
+
+.liste th, .liste td { 
+  padding:var(--espacement-tres-petit);
+  text-align: left;
+  border: 1px solid var(--couleur-border);
+}
+
+.liste th {
+  background-color: var(--couleur-hover);
+  color: var(--couleur-primaire);
+  font-weight: bold;
+}
+
+.liste tbody {
+  background-color: var(--couleur-fond);
+}
+
+@media screen and (max-width: 768px) {
+  .liste table {
+    display: block; /* Changer la table en bloc */
+  }
+
+  .liste tr {
+    display: block; 
+    margin-bottom:var(--espacement-tres-petit); 
+  }
+
+  .liste td, .liste th {
+    display: block; /* Les cellules deviennent des blocs */
+    width: 100%; /* Prendre toute la largeur */
+    
+  }
+
+}
+
+
+

@@ -1,0 +1,6 @@
+/* pour cacher les lebels non désirés mais qui peut etre lu par le navigateur (accessibilité)*/
+.invisible{
+    position: absolute;
+    width: 1px;
+    overflow: hidden;       
+}

@@ -1,0 +1,17 @@
+.groupe-titre{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--espacement-tres-petit);
+
+    & h2{
+        color: var(--couleur-hover);
+    }
+}
+@media screen and (max-width:660px){
+    .groupe-titre{
+        flex-direction: column-reverse;
+        row-gap: 30px;
+        padding: 0;
+    }
+}

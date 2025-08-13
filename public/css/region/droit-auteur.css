@@ -1,0 +1,7 @@
+.droit-auteur{
+    background-color: var(--couleur-secondaire);
+    color: var(--couleur-primaire);
+    text-align: center;
+    padding: var(--espacement-tres-petit);
+    font-size: var(--font-size-xs);
+}

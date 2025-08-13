@@ -1,0 +1,59 @@
+.entete{
+    background-color: var(--couleur-fond);
+    border-bottom: 1px solid var(--couleur-border);
+    padding-bottom:var(--espacement-tres-petit);
+    
+    & form{
+        display: flex;
+        justify-content: center;
+        padding: var(--espacement-regulierRem);   
+    }
+    & input{
+        min-width: 80ch;
+        padding: var(--espacement-tres-petit);
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
+        outline: none;
+        border: 1px solid var(--couleur-border);
+        
+        &::placeholder{
+            text-align: center;
+            font-size: var(--font-size-regulier
+            );
+        } 
+    }
+    
+    & .icone-form{
+        border:1px solid var(--couleur-border) ;
+        border-left: none;
+        border-bottom-right-radius: 5px;
+        border-top-right-radius: 5px;
+        padding: var(--espacement-tres-petit);
+        width: 5ch;
+        height: 5ch;
+        background-color: var(--couleur-coup-coeur);
+        cursor: pointer;
+    }
+    & h1{
+        text-align: center;
+        font-style: italic;
+        color: var(--couleur-nav);
+    } 
+}
+
+@media screen and (max-width:660px) {
+    .entete input{
+        min-width: 60ch;
+    }
+    
+}
+@media screen and (max-width:540px) {
+    .entete input{
+        min-width: 35ch;
+    }
+    .entete h1{
+        font-size: var(--font-size-h2);
+    }
+    
+}
+

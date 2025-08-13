@@ -1,0 +1,14 @@
+.conteneur-petite-carte{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--espacement-courant);
+    margin-top: 30px;
+}
+
+@media screen and (max-width:454px) {
+   .conteneur-petite-carte{
+    justify-content: center;
+   }
+}

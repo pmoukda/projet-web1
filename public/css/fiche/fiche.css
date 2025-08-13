@@ -1,0 +1,11 @@
+.fiche{
+    max-width: 100%;
+    border: 1px solid var(--couleur-border);
+    background-color: var(--couleur-fond);
+    margin-top: 20px;
+    
+    &:has(:target) .onglet:not(:target) {
+        display: none;
+    }
+}
+

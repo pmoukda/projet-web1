@@ -1,0 +1,9 @@
+.menu-secondaire{
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    
+    & a{
+        font-size: 14px;
+    }
+} 

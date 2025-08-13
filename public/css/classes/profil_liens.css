@@ -1,0 +1,4 @@
+.profil_liens{
+    display: flex;
+    gap: var(--espacement-courant);
+}

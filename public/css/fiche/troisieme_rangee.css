@@ -1,0 +1,16 @@
+.troisieme_rangee{
+    margin-top: var(--espacement-courant);
+    display: flex;
+    align-items: center;
+   
+
+    & p{
+        border-radius: 5px;
+        font-size: 14px;
+    }
+    & a{
+        color: var(--couleur-accent);
+        font-style: italic;
+        text-decoration: underline;
+    }
+}

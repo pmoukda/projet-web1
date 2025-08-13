@@ -1,0 +1,17 @@
+.media{
+    display: flex; 
+    gap: var(--espacement-petitRem);
+    justify-content:end;
+    align-items: center;
+    padding: var(--espacement-courant);
+    max-width: 80%;
+    
+    & .icone{
+        cursor: pointer;
+    }
+    
+    & p{
+        color: var(--couleur-primaire);
+        font-family: "Libre Caslon Text", serif; 
+    }
+}

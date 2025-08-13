@@ -1,0 +1,6 @@
+@media screen and (max-width: 768px) {
+  .menu-checkbox:checked ~ .menu-principal {
+    display: flex;
+  }
+
+}

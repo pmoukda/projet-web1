@@ -1,0 +1,11 @@
+.error{
+    color: red;
+}
+
+.salutation{
+    justify-self: end;
+    margin-top: var(--espacement-courant);
+}
+.profil_section {
+    margin-top:var(--espacement-regulier);
+}

@@ -1,0 +1,24 @@
+.champ {
+    width: 80%;
+    & select{
+        width: 26ch;
+        outline: none;
+        padding: var(--espacement-tres-petit);   
+        margin-top: var(--espacement-tres-petit);
+    } 
+}
+
+@media screen and (max-width: 940px) {
+    .champ {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .champ label,
+    .champ select,
+    .champ input {
+        max-width: 100%;
+        flex: none;
+        width: auto;
+    }
+}

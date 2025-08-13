@@ -1,0 +1,14 @@
+/*conteneur des cartes*/
+.conteneur {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: var(--espacement-courant);  
+}
+
+@media screen and (max-width:540px) {
+    .conteneur{
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: var(--espacement-minus); 
+    }
+    
+}

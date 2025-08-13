@@ -1,0 +1,57 @@
+.formulaire{
+    max-width: 500px;
+    margin: 50px auto;
+    
+    & form{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        border: 1px solid var(--couleur-border);
+        border-radius: var(--espacement-tres-petit);
+        padding: 10px 15px 30px;
+        background-color: var(--couleur-fond);
+
+    }
+
+    & label{
+       margin-top: var(--espacement-courant);
+       margin-bottom: var(--espacement-tres-petit);
+
+        &[for="rememberMe"], input[type='checkbox']{
+            gap: var(--espacement-tres-petit);
+            display: flex;
+            align-items: center;
+            font-size: var(--font-size-petit);
+        }
+    }
+   
+    & input, select{
+        outline: none;
+        padding: var(--espacement-tres-petit);
+        border: 1px solid var(--couleur-border);
+        border-radius: var(--espacement-minus);
+       
+
+    }
+
+    & a{
+        color: var(--couleur-hover);
+        font-size: var(--font-size-petit);
+
+        &:hover{
+            text-decoration: underline;
+        }
+    }
+    & .redirection{
+        margin-top: 20px;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+
+        & a{
+            padding: 0;
+            margin-top: 10px;
+        }
+    }
+}
+

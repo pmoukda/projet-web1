@@ -1,0 +1,60 @@
+/* Boutons */
+.bouton{
+    border: 2px solid var(--couleur-accent);
+    border-radius: 10px;
+    /* width: 100%; */
+    font-weight: 700;
+    font-size: var(--font-size-moyen);
+    color: var(--couleur-accent);
+    background-color: var(--couleur-primaire);
+    align-self: center;
+    padding: 10px 20px;
+    margin-top: var(--espacement-petit); 
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+
+    
+    &:hover{
+        background-color: var(--couleur-hover);
+        color: var(--couleur-primaire);
+    }
+    
+    /* bouton "voir plus" */
+    &.blanc{
+        justify-self: self-end;
+        width: auto;
+    }
+    
+    &.rouge{
+        background-color: var(--couleur-accent);
+        color: var(--couleur-primaire);
+        width: 100%;
+        &:hover{
+            background-color: var(--couleur-hover);
+        }
+    }
+    /* bouton edit*/
+    &.jaune{
+        background-color: var(--couleur-coup-coeur);
+        color: var(--couleur-primaire);
+        border: none;
+    }
+    /*bouton dans fiche enchere*/
+    &.special{
+        width: auto;
+       
+    }
+}
+
+.profil_actions {
+    margin-top: 1rem;
+    display: flex;
+    gap: 1rem;
+}
+
+@media screen and (max-width:540px) {
+   .bouton.blanc{
+        justify-self: start;
+    }
+    
+}

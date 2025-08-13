@@ -1,0 +1,30 @@
+.coup-coeur{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap:var(--espacement-minus);
+    border: 1px solid var(--couleur-border);
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: var(--couleur-primaire);
+    margin-top: 0; 
+    padding: var(--espacement-tres-petit);
+    
+
+    &.lord{
+        position: absolute;
+        background-color:rgb(9, 4, 49);
+        border-radius: 0;
+        border: none;
+        box-shadow: 2px 5px 8px rgb(38, 36, 30);
+        font-weight:bold ;
+        font-style: italic;
+        width: 92%;
+        color: var(--couleur-primaire);
+    }
+    & p{
+        margin-top: 0;
+        text-align: center;
+    }
+}
+

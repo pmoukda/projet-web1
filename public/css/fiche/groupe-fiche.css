@@ -1,0 +1,15 @@
+.groupe-fiche {
+	flex-grow: 1;
+	max-width: 100%;
+	flex-basis: 500px;
+}
+
+/* Responsive */
+@media screen and (max-width: 600px) {
+    .groupe-fiche {
+        flex-direction: column;
+        gap: 15px;
+        order: 2;
+    }
+
+}

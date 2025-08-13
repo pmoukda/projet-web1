@@ -1,0 +1,20 @@
+@media screen and (max-width: 768px) {
+    .menu-principal {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+        
+        & a{
+            color: var(--couleur-accent);
+        }
+    }
+    
+    .menu-principal li {
+        padding: 10px 20px;
+    }
+    
+    
+}

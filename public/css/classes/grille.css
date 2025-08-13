@@ -1,0 +1,7 @@
+/* grille de catalogue d'enchère*/
+.grille{
+    flex-basis: 100%;
+    padding: var(--espacement-minus);
+}
+
+
