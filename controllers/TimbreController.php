@@ -37,7 +37,7 @@ class TimbreController{
         $selectPays = $pays->select();
         
         $user = new Utilisateur;
-        $selectUserId = $user->selectId($_SESSION['user_id']);;
+        $selectUserId = $user->selectId($_SESSION['user_id']);
         
         return View::render('timbre/create', ['conditions' => $selectConditions, 'couleurs' => $selectCouleurs, 'pays' => $selectPays, 'utilisateurs' => $selectUserId]);
         
@@ -61,7 +61,7 @@ class TimbreController{
             $insertTimbre = $timbre->insert($data);
             
             if($insertTimbre){
-                return View::render('timbre/view');
+                return View::redirect('timbre');
             }else{
                 return View::render('errors',['message' => 'Erreur 404']);
             }
@@ -87,6 +87,7 @@ class TimbreController{
     
     
     public function view($data){
+        // var_dump($data);
         if(isset($data['id'])&& $data['id'] != null){
             $timbre = new Timbre;
             $selectedId = $timbre->selectId($data['id']);
@@ -111,7 +112,7 @@ class TimbreController{
                 $user = new Utilisateur;
                 $selectUser = $user->selectId($user_id);
                 $users = $selectUser['nom_utilisateur'];
-                
+               
                 return View::render('timbre/view', ['timbre' => $selectedId, 'conditions' => $conditions, 'couleurs' => $couleurs, 'pays' => $pays, 'utilisateur' => $users]);
             }else{
                 return View::render('errors',['message' => 'Timbre non trouvé!']);
@@ -136,7 +137,7 @@ class TimbreController{
             $pays = new Pays;
             $selectPays = $pays->select();
             
-            $user = new Condition;
+            $user = new Utilisateur;
             $selectUsers = $user->select();
             
             if($selectedId){
