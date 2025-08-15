@@ -5,6 +5,7 @@
         <a class="bouton blanc" id="bouton-info" href="#">Mon compte</a>
         <a class="bouton blanc" href="{{base}}/favorie_enchere">Mes favories</a>
         <a class="bouton blanc" href="{{base}}/enchere">Enchères archivées</a>
+        <a class="bouton blanc" href="{{base}}/timbre/create">Ajouter un timbre</a>
     </div>
     <h1>Vos enchères</h1>
     <p>Bonjour, vous n&#39 avez pas d'enchères récentes.</p>

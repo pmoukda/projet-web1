@@ -55,7 +55,7 @@
         </nav>
         <form action="#" method="POST">
             <label class="invisible" for="recherche">Recherche</label>
-            <input type="text" id="recherche" name="recherche" placeholder="Recherche de timbres...">
+            <input type="search" id="recherche" name="recherche" placeholder="Recherche de timbres...">
             <img class="icone-form" src="https://s2.svgbox.net/octicons.svg?ic=search&color=000" alt="icone recherche" width="32" height="32">
         </form>
     </header>

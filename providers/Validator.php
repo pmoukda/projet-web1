@@ -45,7 +45,7 @@ class Validator{
     }
     public function email(){
         if (!empty($this->value) && !filter_var($this->value, FILTER_VALIDATE_EMAIL)) {
-            $this->errors[$this->key]="Le format du $this->name est invalide.";
+            $this->errors[$this->key]="$this->name est invalide.";
         }
         return $this;
     }
@@ -67,13 +67,47 @@ class Validator{
         return $this;
     }
     public function validateYear(){
-        if(!preg_match('/^\d{4}$/', $this->value) || $this->value < 1900 || $this->value > date('Y') + 10){
+        if(!preg_match('/^\d{4}$/', $this->value) || $this->value < 1800 || $this->value > date('Y') + 10){
             $this->errors[] = "L'année doit être un nombre entre 1900 et " . (date('Y') + 10);
         }
     }
+  public function int(){
+        if(!filter_var($this->value, FILTER_VALIDATE_INT)){
+            $this->errors[$this->key]="$this->name doit être un nombre entier.";
+        } 
+        return $this;
+    }
+
+    public function float(){
+        if(!filter_var($this->value, FILTER_VALIDATE_FLOAT)){
+            $this->errors[$this->key]="$this->name doit être un nombre décimal.";
+        } 
+        return $this;
+    }
+        public function bigger($limit) {
+        if ($this->value >= $limit) {
+            $this->errors[$this->key]="$this->name doit être moins que ou égal à $limit.";
+        }
+        return $this;
+    }
+
+    public function lower($limit) {
+        if ($this->value <= $limit) {
+            $this->errors[$this->key]="$this->name doit être plus que ou égal à $limit.";
+        }
+        return $this;
+    }
+    public function validateYesNo(){
+        if(strtolower($this->value) !== '1' && strtolower($this->value) !== '0'){
+            $this->errors[$this->key] = "$this->name doit être oui ou non";
+        }
+        return $this;
+    }
+
     public function isSuccess(){
         if(empty($this->errors)) return true;
     }
+
    public function getErrors(){
         if(!$this->isSuccess()) return $this->errors;
     }

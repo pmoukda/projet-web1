@@ -13,7 +13,7 @@
 
     }
 
-    & label{
+    & label, legend{
        margin-top: var(--espacement-courant);
        margin-bottom: var(--espacement-tres-petit);
 
@@ -25,7 +25,7 @@
         }
     }
    
-    & input, select{
+    & input, select, textarea{
         outline: none;
         padding: var(--espacement-tres-petit);
         border: 1px solid var(--couleur-border);
@@ -52,6 +52,9 @@
             padding: 0;
             margin-top: 10px;
         }
+    }
+    & div{
+       padding: var(--espacement-minus);
     }
 }
 

@@ -51,8 +51,9 @@ class UtilisateurController{
             $user = new Utilisateur;
             $data['password'] = $user->hashPassword($data['password']);
             $insertUser = $user->insert($data);
-            
-            return View::redirect('login');
+            if($insertUser){
+                return View::redirect('login');
+            }
             
         }else{
             $errors = $validator->getErrors();

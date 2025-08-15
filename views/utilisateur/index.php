@@ -8,7 +8,6 @@
                     <th>Nom</th>
                     <th>Nom d&#39utilisateur</th>
                     <th>Courriel</th>
-                    <th>Password</th>
                     <th>Date de création</th>
                     <th>Adresse</th>
                     <th>Téléphone</th>
@@ -26,7 +25,6 @@
                     <td>{{ utilisateur.nom }}</td>
                     <td>{{ utilisateur.nom_utilisateur }}</td>
                     <td>{{ utilisateur.email }}</td>
-                    <td>{{ utilisateur.password }}</td>
                     <td>{{ utilisateur.date_creation }}</td>
                     <td>{{ utilisateur.adresse }}</td>
                     <td>{{ utilisateur.phone }}</td>
