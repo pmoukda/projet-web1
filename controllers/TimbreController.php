@@ -26,45 +26,46 @@ class TimbreController{
     }
     
     public function create(){
-            $condition = new Condition;
-            $selectConditions = $condition->select();
-     
-            $couleur = new Couleur;
-            $selectCouleurs = $couleur->select();
-            
-            $pays = new Pays;
-            $selectPays = $pays->select();
-            
-            $user = new Utilisateur;
-            $selectUsers = $user->select();
-
-            return View::render('timbre/create', ['conditions' => $selectConditions, 'couleurs' => $selectCouleurs, 'pays' => $selectPays, 'utilisateurs' => $selectUsers]);
+        
+        $condition = new Condition;
+        $selectConditions = $condition->select();
+        
+        $couleur = new Couleur;
+        $selectCouleurs = $couleur->select();
+        
+        $pays = new Pays;
+        $selectPays = $pays->select();
+        
+        $user = new Utilisateur;
+        $selectUserId = $user->selectId($_SESSION['user_id']);;
+        
+        return View::render('timbre/create', ['conditions' => $selectConditions, 'couleurs' => $selectCouleurs, 'pays' => $selectPays, 'utilisateurs' => $selectUserId]);
         
     } 
     
     public function store($data){
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $validator = new Validator;
         $validator->field('nom', $data['nom'], 'le nom')->min(2)->max(100)->required();
         $validator->field('annee', $data['annee'], "l'année")->validateYear();
-        $validator->field('tirage', $data['tirage'], 'le tirage')->number();
+        $validator->field('tirage', $data['tirage'], 'le tirage')->number()->bigger(20);
         $validator->field('dimensions', $data['dimensions'])->min(2)->max(45);
         $validator->field('certifie', $data['certifie'], 'certifé')->required();
         $validator->field('condition_id', $data['condition_id'], 'la condition')->required();
         $validator->field('couleur_id', $data['couleur_id'], 'la couleur')->required();
         $validator->field('pays_id', $data['pays_id'], 'le pays')->required();
-        $validator->field('utilisateur_id', $data['utilisateur_id'], "l'utilisateur id")->int()->required();
-        $validator->field('description', $data['description'], 'la description')->bigger(535);
+        // $validator->field('utilisateur_id', $data['utilisateur_id'], "l'utilisateur id")->int();
+        $validator->field('description', $data['description'], 'la description')->max(1000);
         
         if($validator->isSuccess()){
             $timbre = new Timbre;
             $insertTimbre = $timbre->insert($data);
             
             if($insertTimbre){
-                return View::render('timbre/view?id=' . $insertTimbre);
+                return View::render('timbre/view');
             }else{
                 return View::render('errors',['message' => 'Erreur 404']);
             }
+
         }else{
             $errors = $validator->getErrors();
             
@@ -84,8 +85,6 @@ class TimbreController{
         }
     }
     
-
-    }
     
     public function view($data){
         if(isset($data['id'])&& $data['id'] != null){
@@ -154,17 +153,17 @@ class TimbreController{
     public function update($data,$get){
         if(isset($get['id']) && $get['id'] != null){
             $validator = new Validator;
-
-            $validator->field('nom', $data['nom'], 'le nom')->min(2)->max(45)->required();
+            
+            $validator->field('nom', $data['nom'], 'le nom')->min(2)->max(100)->required();
             $validator->field('annee', $data['annee'], "l'année")->validateYear();
-            $validator->field('tirage', $data['tirage'], 'le tirage')->number();
+            $validator->field('tirage', $data['tirage'], 'le tirage')->number()->bigger(20);
             $validator->field('dimensions', $data['dimensions'])->min(2)->max(45);
-            $validator->field('certifie', $data['certifie'], 'certifé')->required()->validateYesNo();
+            $validator->field('certifie', $data['certifie'], 'certifé')->required();
             $validator->field('condition_id', $data['condition_id'], 'la condition')->required();
             $validator->field('couleur_id', $data['couleur_id'], 'la couleur')->required();
             $validator->field('pays_id', $data['pays_id'], 'le pays')->required();
-            $validator->field('utilisateur_id', $data['utilisateur_id'], "l'utilisateur id")->int()->required();
-            $validator->field('description', $data['description'], 'la description')->bigger(535);
+            // $validator->field('utilisateur_id', $data['utilisateur_id'], "l'utilisateur id")->int()->required();
+            $validator->field('description', $data['description'], 'la description')->bigger(1000);
             
             if($validator->isSuccess()){
                 $id = $get['id'];

@@ -68,8 +68,9 @@ class Validator{
     }
     public function validateYear(){
         if(!preg_match('/^\d{4}$/', $this->value) || $this->value < 1800 || $this->value > date('Y') + 10){
-            $this->errors[] = "L'année doit être un nombre entre 1900 et " . (date('Y') + 10);
+            $this->errors[$this->key] = "L'année doit être un nombre entre 1800 et " . (date('Y') + 10);
         }
+        return $this;
     }
   public function int(){
         if(!filter_var($this->value, FILTER_VALIDATE_INT)){
@@ -97,13 +98,7 @@ class Validator{
         }
         return $this;
     }
-    public function validateYesNo(){
-        if(strtolower($this->value) !== '1' && strtolower($this->value) !== '0'){
-            $this->errors[$this->key] = "$this->name doit être oui ou non";
-        }
-        return $this;
-    }
-
+  
     public function isSuccess(){
         if(empty($this->errors)) return true;
     }
@@ -114,5 +109,3 @@ class Validator{
 
 }
 
-
-?>
