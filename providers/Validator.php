@@ -26,14 +26,14 @@ class Validator{
         return $this;
     }
     public function min($lenght){
-        if(strlen($this->value) < $lenght){
-            $this->errors[$this->key] = "$this->name doit être plus que $lenght caractères.";
+        if(mb_strlen($this->value) < $lenght){
+            $this->errors[$this->key] = "$this->name doit contenir au minimum $lenght caractères.";
         }
         return $this;
     }
     public function max($lenght){
-           if(strlen($this->value) > $lenght){
-            $this->errors[$this->key] = "$this->name doit être moins que $lenght caractères.";
+           if(mb_strlen($this->value) > $lenght){
+            $this->errors[$this->key] = "$this->name doit contenir au maximum $lenght caractères.";
         }
         return $this;
     }
@@ -45,7 +45,7 @@ class Validator{
     }
     public function email(){
         if (!empty($this->value) && !filter_var($this->value, FILTER_VALIDATE_EMAIL)) {
-            $this->errors[$this->key]="Le format du $this->name est invalide.";
+            $this->errors[$this->key]="$this->name est invalide.";
         }
         return $this;
     }
@@ -67,18 +67,51 @@ class Validator{
         return $this;
     }
     public function validateYear(){
-        if(!preg_match('/^\d{4}$/', $this->value) || $this->value < 1900 || $this->value > date('Y') + 10){
-            $this->errors[] = "L'année doit être un nombre entre 1900 et " . (date('Y') + 10);
+        if(!preg_match('/^\d{4}$/', $this->value) || $this->value < 1800 || $this->value > date('Y') + 10){
+            $this->errors[$this->key] = "L'année doit être un nombre entre 1800 et " . (date('Y') + 10);
         }
+        return $this;
     }
+  public function int(){
+        if(!filter_var($this->value, FILTER_VALIDATE_INT)){
+            $this->errors[$this->key]="$this->name doit être un nombre entier.";
+        } 
+        return $this;
+    }
+public function yesNo() {
+    if (!in_array($this->value, [0, 1, '0', '1'], true)) {
+        $this->errors[$this->key] = "$this->name doit être Oui ou Non.";
+    }
+    return $this;
+}
+
+    public function float(){
+        if(!filter_var($this->value, FILTER_VALIDATE_FLOAT)){
+            $this->errors[$this->key]="$this->name doit être un nombre décimal.";
+        } 
+        return $this;
+    }
+        public function bigger($limit) {
+        if ($this->value >= $limit) {
+            $this->errors[$this->key]="$this->name doit être inférieur ou égal à $limit.";
+        }
+        return $this;
+    }
+
+    public function lower($limit) {
+        if ($this->value <= $limit) {
+            $this->errors[$this->key]="$this->name doit être supérieur ou égal à $limit.";
+        }
+        return $this;
+    }
+  
     public function isSuccess(){
         if(empty($this->errors)) return true;
     }
+
    public function getErrors(){
         if(!$this->isSuccess()) return $this->errors;
     }
 
 }
 
-
-?>

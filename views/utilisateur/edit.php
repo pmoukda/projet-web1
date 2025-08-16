@@ -1,4 +1,5 @@
 {{include('layouts/header.php', {title:'Authentification'})}}
+<p class="salutation">Bonjour <strong>{{utilisateur.nom}} !</strong></p>
   <section class="formulaire">
         {% if errors is defined %}
             <div>

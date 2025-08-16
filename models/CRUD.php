@@ -13,6 +13,7 @@ Abstract class CRUD extends \PDO{
         }
 
         $sql = "SELECT * FROM $this->table ORDER BY $field $order";
+        // return $sql;
         if($stmt = $this->query($sql)){
             return $stmt->fetchAll();
         }else{
@@ -34,17 +35,35 @@ Abstract class CRUD extends \PDO{
             return false;
         }
     }
+ //Fonction pour associser le id au nom
+public function selectAssoc($id= 'id', $value = 'nom') {
+    $sql = "SELECT $id, $value FROM $this->table";
+    $stmt = $this->prepare($sql);
+    $stmt->execute();
+
+    // FETCH_OBJ pour que $item soit un objet
+    $result = $stmt->fetchAll(\PDO::FETCH_OBJ);
+
+    $association = [];
+    foreach ($result as $item) {
+        $association[$item->$id] = $item->$value;
+    }
+
+    return $association;
+}
+
+
     
    // Fonction insérer les données
     final public function insert($data){
-        
+
         $data_keys = array_fill_keys($this->fillable, '');
         $data = array_intersect_key($data, $data_keys);
-        
+ 
         $fieldName = implode(', ', array_keys($data));
         $fieldValue = ":".implode(', :', array_keys($data));
         $sql = "INSERT INTO $this->table ($fieldName) VALUES ($fieldValue);";
-        
+
         $stmt = $this->prepare($sql);
         foreach($data as $key=>$value){
             $stmt->bindValue(":$key", $value);
