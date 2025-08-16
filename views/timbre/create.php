@@ -17,7 +17,7 @@
             <input type="text" id="annee" name="annee" pattern="^\d{4}$" value="{{timbre.annee}}" required>
 
             <label for="tirage">Tirage</label>
-            <input type="number" id="tirage" max="1000" name="tirage" value="{{timbre.tirage}}">
+            <input type="number" id="tirage" min="1" max="1000" name="tirage" value="{{timbre.tirage}}">
 
             <label for="dimensions">Dimensions</label>
             <input type="text" id="dimensions" name="dimensions" maxlength="45" value="{{timbre.dimensions}}" required>
@@ -62,6 +62,8 @@
 
            <input type="hidden" id="utilisateur_id" name="utilisateur_id" value="{{utilisateurs.id}}">
            <input class="bouton rouge" type="submit" value="Ajouter">
+           <input class="bouton rouge" type="submit" value="Réinitialiser">
         </form>
+        <a class="bouton blanc" href="{{base}}/utilisateur/view?id={{utilisateur.id}}">Retour</a>
     </section> 
 {{ include('layouts/footer.php')}}

@@ -60,7 +60,7 @@ class TimbreController{
         $validator = new Validator;
         $validator->field('nom', $data['nom'], 'le nom')->min(2)->max(100)->required();
         $validator->field('annee', $data['annee'], "l'année")->validateYear();
-        $validator->field('tirage', $data['tirage'], 'le tirage')->number()->bigger(1000);
+        $validator->field('tirage', $data['tirage'], 'le tirage')->number()->lower(1)->bigger(1000);
         $validator->field('dimensions', $data['dimensions'])->min(2)->max(45);
         $validator->field('certifie', $data['certifie'], 'certifé')->yesNo();
         $validator->field('condition_id', $data['condition_id'], 'la condition')->required();
@@ -171,7 +171,7 @@ class TimbreController{
             
             $validator->field('nom', $data['nom'], 'le nom')->min(2)->max(100)->required();
             $validator->field('annee', $data['annee'], "l'année")->validateYear();
-            $validator->field('tirage', $data['tirage'], 'le tirage')->number()->bigger(1000);
+            $validator->field('tirage', $data['tirage'], 'le tirage')->number()->lower(1)->bigger(1000);
             $validator->field('dimensions', $data['dimensions'])->min(2)->max(45);
             $validator->field('certifie', $data['certifie'], 'certifé')->yesNo();
             $validator->field('condition_id', $data['condition_id'], 'la condition')->required();
@@ -218,7 +218,7 @@ class TimbreController{
             $delete = $timbre->delete($data['id']);
 
             if($delete){
-                return View::render('timbre');
+                return View::redirect('timbre');
             }else{
                 return View::render('errors', ['message' => 'Impossible de supprimer le timbre! Timbre non trouvé.']);
             }

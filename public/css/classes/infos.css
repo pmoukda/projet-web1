@@ -1,0 +1,7 @@
+.infos{
+
+    & p{
+        max-width: 80ch;
+        white-space: wrap;
+    }
+}
