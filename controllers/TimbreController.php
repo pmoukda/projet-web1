@@ -19,8 +19,21 @@ class TimbreController{
     public function index(){
         $timbre = new Timbre;
         $timbreSelected = $timbre->select();
+
+        $condition = new Condition;
+        $conditions = $condition->selectAssoc('id' ,'etat');
+
+        $couleur = new Couleur;
+        $couleurs = $couleur->selectAssoc('id', 'couleur');
+
+        $pays = new Pays;
+        $pays = $pays->selectAssoc('id', 'nom_pays');
+
+        $user = new Utilisateur;
+        $users = $user->selectAssoc('id', 'nom_utilisateur');
+
         if($timbreSelected){
-            return View::render('timbre/index',['timbres'=>$timbreSelected]);
+            return View::render('timbre/index',['timbres'=>$timbreSelected, 'conditions' =>$conditions, 'couleurs' =>$couleurs, 'pays' => $pays, 'utilisateurs' => $users]);
         }
         
     }
@@ -47,9 +60,9 @@ class TimbreController{
         $validator = new Validator;
         $validator->field('nom', $data['nom'], 'le nom')->min(2)->max(100)->required();
         $validator->field('annee', $data['annee'], "l'année")->validateYear();
-        $validator->field('tirage', $data['tirage'], 'le tirage')->number()->bigger(20);
+        $validator->field('tirage', $data['tirage'], 'le tirage')->number()->bigger(1000);
         $validator->field('dimensions', $data['dimensions'])->min(2)->max(45);
-        $validator->field('certifie', $data['certifie'], 'certifé')->required();
+        $validator->field('certifie', $data['certifie'], 'certifé')->yesNo();
         $validator->field('condition_id', $data['condition_id'], 'la condition')->required();
         $validator->field('couleur_id', $data['couleur_id'], 'la couleur')->required();
         $validator->field('pays_id', $data['pays_id'], 'le pays')->required();
@@ -65,7 +78,7 @@ class TimbreController{
             }else{
                 return View::render('errors',['message' => 'Erreur 404']);
             }
-
+            
         }else{
             $errors = $validator->getErrors();
             
@@ -78,10 +91,10 @@ class TimbreController{
             $pays = new Pays;
             $selectPays = $pays->select();
             
-            $user = new Condition;
-            $selectUsers = $user->select();
+            $user = new Utilisateur;
+            $selectUserId = $user->selectId($data['utilisateur_id']);
             
-            return View::render('timbre/create', ['errors' => $errors, 'timbre' => $data, 'conditions' =>  $selectConditions, 'couleurs' => $selectCouleurs, 'pays' => $selectPays, 'utilisateurs' => $selectUsers]);
+            return View::render('timbre/create', ['errors' => $errors, 'timbre' => $data, 'conditions' =>  $selectConditions, 'couleurs' => $selectCouleurs, 'pays' => $selectPays, 'utilisateurs' => $selectUserId]);
         }
     }
     
@@ -112,7 +125,7 @@ class TimbreController{
                 $user = new Utilisateur;
                 $selectUser = $user->selectId($user_id);
                 $users = $selectUser['nom_utilisateur'];
-               
+                
                 return View::render('timbre/view', ['timbre' => $selectedId, 'conditions' => $conditions, 'couleurs' => $couleurs, 'pays' => $pays, 'utilisateur' => $users]);
             }else{
                 return View::render('errors',['message' => 'Timbre non trouvé!']);
@@ -126,7 +139,7 @@ class TimbreController{
     public function edit($data){
         if(isset($data['id'])&& $data['id'] != null){
             $timbre = new Timbre;
-            $selectedId = $timbre->selectId($data);
+            $selectedId = $timbre->selectId($data['id']);
             
             $condition = new Condition;
             $selectConditions = $condition->select();
@@ -137,11 +150,12 @@ class TimbreController{
             $pays = new Pays;
             $selectPays = $pays->select();
             
-            $user = new Utilisateur;
-            $selectUsers = $user->select();
-            
             if($selectedId){
-                return View::render('timbre/edit', ['timbre' => $selectedId, 'conditions' => $selectConditions, 'couleurs' => $selectCouleurs, 'pays' => $selectPays, 'utilisateurs' => $selectUsers]);
+                $user_id = $selectedId['utilisateur_id'];
+                $user = new Utilisateur;
+                $selectUserId = $user->selectId($user_id);
+
+                return View::render('timbre/edit', ['timbre' => $selectedId, 'conditions' => $selectConditions, 'couleurs' => $selectCouleurs, 'pays' => $selectPays, 'utilisateurs' => $selectUserId]);
             }else{
                 return View::render('errors',['message' => 'Timbre non trouvé!']);
             }
@@ -157,14 +171,14 @@ class TimbreController{
             
             $validator->field('nom', $data['nom'], 'le nom')->min(2)->max(100)->required();
             $validator->field('annee', $data['annee'], "l'année")->validateYear();
-            $validator->field('tirage', $data['tirage'], 'le tirage')->number()->bigger(20);
+            $validator->field('tirage', $data['tirage'], 'le tirage')->number()->bigger(1000);
             $validator->field('dimensions', $data['dimensions'])->min(2)->max(45);
-            $validator->field('certifie', $data['certifie'], 'certifé')->required();
+            $validator->field('certifie', $data['certifie'], 'certifé')->yesNo();
             $validator->field('condition_id', $data['condition_id'], 'la condition')->required();
             $validator->field('couleur_id', $data['couleur_id'], 'la couleur')->required();
             $validator->field('pays_id', $data['pays_id'], 'le pays')->required();
             // $validator->field('utilisateur_id', $data['utilisateur_id'], "l'utilisateur id")->int()->required();
-            $validator->field('description', $data['description'], 'la description')->bigger(1000);
+            $validator->field('description', $data['description'], 'la description')->max(1000);
             
             if($validator->isSuccess()){
                 $id = $get['id'];
@@ -188,10 +202,10 @@ class TimbreController{
                 $pays = new Pays;
                 $selectPays = $pays->select();
                 
-                $user = new Condition;
-                $selectUsers = $user->select();
+                $user = new Utilisateur;
+                $selectUserId = $user->selectId($data['utilisateur_id']);
                 
-                return View::render('timbre/edit', ['errors' => $errors, 'timbre' => $data, 'conditions' =>  $selectConditions, 'couleurs' => $selectCouleurs, 'pays' => $selectPays, 'utilisateurs' => $selectUsers]);
+                return View::render('timbre/edit', ['errors' => $errors, 'timbre' => $data, 'conditions' =>  $selectConditions, 'couleurs' => $selectCouleurs, 'pays' => $selectPays, 'utilisateurs' => $selectUserId]);
             }
         }else{
             return View::render('errors', ['message' => 'Erreur 404']);
@@ -201,7 +215,8 @@ class TimbreController{
     public function delete($data){
         if(Auth::session()){
             $timbre = new Timbre;
-            $delete = $timbre->delete($data);
+            $delete = $timbre->delete($data['id']);
+
             if($delete){
                 return View::render('timbre');
             }else{

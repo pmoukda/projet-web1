@@ -35,6 +35,24 @@ Abstract class CRUD extends \PDO{
             return false;
         }
     }
+ //Fonction pour associser le id au nom
+public function selectAssoc($id= 'id', $value = 'nom') {
+    $sql = "SELECT $id, $value FROM $this->table";
+    $stmt = $this->prepare($sql);
+    $stmt->execute();
+
+    // FETCH_OBJ pour que $item soit un objet
+    $result = $stmt->fetchAll(\PDO::FETCH_OBJ);
+
+    $association = [];
+    foreach ($result as $item) {
+        $association[$item->$id] = $item->$value;
+    }
+
+    return $association;
+}
+
+
     
    // Fonction insérer les données
     final public function insert($data){

@@ -45,7 +45,11 @@
                 </li>
             </ul>
             <ul class="menu-principal">
+                {% if guest %}
                 <li><a href="{{base}}/utilisateur/create">Devenir membre <i class="fa fa-user"></i></a></li>
+                {% else %}
+                <li><a href="{{base}}/utilisateur/view?id={{utilisateur.id}}">Profil membre <i class="fa fa-user"></i></a></li>
+                {% endif %}
                 {% if guest %}
                 <li><a href="{{base}}/login">Se connecter</a></li>
                 {% else %}
@@ -57,6 +61,6 @@
             <label class="invisible" for="recherche">Recherche</label>
             <input type="search" id="recherche" name="recherche" placeholder="Recherche de timbres...">
             <img class="icone-form" src="https://s2.svgbox.net/octicons.svg?ic=search&color=000" alt="icone recherche" width="32" height="32">
-        </form>
+            </form>
     </header>
     <main>

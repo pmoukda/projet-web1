@@ -26,14 +26,14 @@ class Validator{
         return $this;
     }
     public function min($lenght){
-        if(strlen($this->value) < $lenght){
-            $this->errors[$this->key] = "$this->name doit être plus que $lenght caractères.";
+        if(mb_strlen($this->value) < $lenght){
+            $this->errors[$this->key] = "$this->name doit contenir au minimum $lenght caractères.";
         }
         return $this;
     }
     public function max($lenght){
-           if(strlen($this->value) > $lenght){
-            $this->errors[$this->key] = "$this->name doit être moins que $lenght caractères.";
+           if(mb_strlen($this->value) > $lenght){
+            $this->errors[$this->key] = "$this->name doit contenir au maximum $lenght caractères.";
         }
         return $this;
     }
@@ -78,6 +78,12 @@ class Validator{
         } 
         return $this;
     }
+public function yesNo() {
+    if (!in_array($this->value, [0, 1, '0', '1'], true)) {
+        $this->errors[$this->key] = "$this->name doit être Oui ou Non.";
+    }
+    return $this;
+}
 
     public function float(){
         if(!filter_var($this->value, FILTER_VALIDATE_FLOAT)){
@@ -87,14 +93,14 @@ class Validator{
     }
         public function bigger($limit) {
         if ($this->value >= $limit) {
-            $this->errors[$this->key]="$this->name doit être moins que ou égal à $limit.";
+            $this->errors[$this->key]="$this->name doit être inférieur ou égal à $limit.";
         }
         return $this;
     }
 
     public function lower($limit) {
         if ($this->value <= $limit) {
-            $this->errors[$this->key]="$this->name doit être plus que ou égal à $limit.";
+            $this->errors[$this->key]="$this->name doit être supérieur ou égal à $limit.";
         }
         return $this;
     }

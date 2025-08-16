@@ -16,8 +16,17 @@ class UtilisateurController{
         Auth::session();
         $user = new Utilisateur;
         $user = $user->select();
+
+        $privilege = new Privilege;
+        $privileges = $privilege->selectAssoc('id','role');
+
+        $ville = new Ville;
+        $villes = $ville->selectAssoc('id', 'nom_ville');
+
+        $pays = new Pays;
+        $pays = $pays->selectAssoc('id', 'nom_pays');
         
-        return View::render('utilisateur/index',['utilisateurs'=>$user]);
+        return View::render('utilisateur/index',['utilisateurs'=>$user, 'privileges' => $privileges, 'villes' => $villes, 'pays' => $pays]);
     }
     
     public function create(){

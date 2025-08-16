@@ -1,4 +1,5 @@
 {{include('layouts/header.php', {title:'Création timbre'})}}
+<p class="salutation">Bonjour <strong>{{utilisateur.nom}} !</strong></p>
        <section class="formulaire">
     {% if errors is defined %}
         <div>
@@ -16,7 +17,7 @@
             <input type="text" id="annee" name="annee" pattern="^\d{4}$" value="{{timbre.annee}}" required>
 
             <label for="tirage">Tirage</label>
-            <input type="number" id="tirage" max="20" name="tirage" value="{{timbre.tirage}}">
+            <input type="number" id="tirage" max="1000" name="tirage" value="{{timbre.tirage}}">
 
             <label for="dimensions">Dimensions</label>
             <input type="text" id="dimensions" name="dimensions" maxlength="45" value="{{timbre.dimensions}}" required>
