@@ -1,4 +1,12 @@
 .profil_liens{
     display: flex;
+    flex-wrap: wrap;
     gap: var(--espacement-courant);
+}
+@media screen and (max-width:920px) {
+    .profil_liens a{
+        width: 100%;
+        text-align: center;
+      
+    }
 }

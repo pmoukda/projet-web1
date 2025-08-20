@@ -1,0 +1,9 @@
+.vers-le-haut{
+    color: var(--couleur-nav);
+    text-align: end;
+    text-decoration: underline;
+    
+    &:hover{
+        color: var(--couleur-accent);
+    }
+}

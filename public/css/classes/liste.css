@@ -16,27 +16,67 @@
   font-weight: bold;
 }
 
-.liste tbody {
-  background-color: var(--couleur-fond);
+.liste img{
+  width: 100%;
+  max-width:150px;
 }
 
-@media screen and (max-width: 768px) {
-  .liste table {
-    display: block; /* Changer la table en bloc */
+@media screen and (max-width: 1524px) {
+  .liste table,
+  .liste thead,
+  .liste tbody,
+  .liste th,
+  .liste td,
+  .liste tr {
+    display: block;
+  }
+
+  .liste thead {
+    display: none;
   }
 
   .liste tr {
-    display: block; 
-    margin-bottom:var(--espacement-tres-petit); 
+    margin-bottom: var(--espacement-petitRem);
+    border: 1px solid var(--couleur-border);
+    padding: var(--espacement-petitRem);
+    border-radius: 6px;
+    background-color: var(--couleur-fond);
   }
 
-  .liste td, .liste th {
-    display: block; /* Les cellules deviennent des blocs */
-    width: 100%; /* Prendre toute la largeur */
-    
+  .liste td {
+    position: relative;
+    padding-left: 40%;
+    text-align: left;
+    border: none;
+    border-bottom: 1px solid var(--couleur-border);
+    min-height: 2.5em;
+    box-sizing: border-box;
   }
 
+  .liste td::before {
+    content: attr(data-label);
+    position: absolute;
+    top: 0;
+    left: var(--espacement-tres-petit);
+    width: 45%;
+    white-space: nowrap;
+    font-weight: bold;
+    color: var(--couleur-accent);
+  }
+  .liste img{
+  max-width:200px;
+  width: 100%;
 }
+}
+@media screen and (max-width: 425px) {
 
+  .liste td{
+    text-align: right;
+  }
+
+.liste td::before {
+  text-align: left;
+}
+}
 
 

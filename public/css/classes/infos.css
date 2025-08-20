@@ -1,0 +1,13 @@
+.infos{
+
+}
+
+.infos p{
+        max-width: 80ch;
+        white-space: wrap;
+}
+
+.infos img{
+        max-width: 150px;
+        white-space: wrap;
+}

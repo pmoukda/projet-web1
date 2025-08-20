@@ -7,7 +7,7 @@
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <title>{{title}}</title>
     <link rel="stylesheet" href="{{asset}}/css/style.css">
-    <script src="{{asset}}/javascript/index.js" type="module"></script>
+    <script src="{{asset}}/javascript/index.js" defer></script>
 </head>
 <body>
      <header class="entete">

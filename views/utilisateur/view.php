@@ -6,8 +6,10 @@
         <a class="bouton blanc" href="{{base}}/favorie_enchere">Mes favories</a>
         <a class="bouton blanc" href="{{base}}/enchere">Enchères archivées</a>
         <a class="bouton blanc" href="{{base}}/timbre/create">Ajouter un timbre</a>
-        <a class="bouton blanc" href="{{base}}/timbre">Liste de des timbres</a>
-        <a class="bouton blanc" href="{{base}}/utilisateur">Liste de des utilisateurs</a>
+        <a class="bouton blanc" href="{{base}}/images/create">Ajouter des images</a>
+        <a class="bouton blanc" href="{{base}}/timbre">Liste des timbres</a>
+        <a class="bouton blanc" href="{{base}}/utilisateur">Liste des utilisateurs</a>
+        <a class="bouton blanc" href="{{base}}/images">Liste de mes images</a>
     </div>
     <h1>Vos enchères</h1>
     <p>Bonjour, vous n&#39 avez pas d'enchères récentes.</p>

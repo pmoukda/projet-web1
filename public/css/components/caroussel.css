@@ -12,6 +12,7 @@
   flex-basis: 340px;
   gap: var(--espacement-petitRem);
   
+  
 }
 
 .caroussel .zone-image {
@@ -23,6 +24,12 @@
   width: 100%;
   height: auto;
   border-radius: 4px;
+  transition: transform 0.3s ease-in-out;
+  transform-origin: left center;
+  
+  &:hover {
+    transform: scale(1.8);
+  }
 }
 
 .caroussel .fleches-direction {
@@ -35,7 +42,15 @@
   transform: translateY(-50%);
   padding: 0 10px;
   pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  
 }
+.caroussel:hover .fleches-direction{
+  transform: scale(1.02);
+  opacity: 1;
+}
+
 /* fleche gauche et droite */
 .caroussel .fleche {
   background-color: var(--couleur-secondaire);
@@ -52,10 +67,11 @@
   pointer-events: auto;
   cursor: pointer;
   transition: transform 0.2s ease;
+  
 }
 
 .caroussel .fleche:hover {
-  transform: scale(1.1);
+  transform: scale(1.04);
   opacity: 1;
 }
 /*conteneur petite image*/
@@ -80,6 +96,17 @@
 }
 
 
+@media screen and (max-width: 1100px) {
+  .caroussel .grande-image{
+    transition: transform 0.2s ease-in-out;
+    transform-origin:  center center;
+    
+    &:hover {
+      transform: scale(1.5);
+    }
+  }
+   
+}
 @media screen and (max-width: 1200px) {
   .caroussel{
     padding: 10px;
@@ -109,5 +136,5 @@
   .carrousel .image-petite {
     width: 48px;
   }
- 
+  
 }

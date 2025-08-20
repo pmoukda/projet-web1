@@ -1,7 +1,7 @@
 {{include('layouts/header.php', {title:'Timbre index'})}}
 <p class="salutation">Bonjour <strong>{{utilisateur.nom}} !</strong></p>
-    <section class="liste">
-        <h1>Liste de mes timbres</h1>
+    <section class="liste" id="revenirEnHAut">
+        <h1>Liste des timbres</h1>
         <table>
             <thead>
                 <tr>
@@ -23,24 +23,25 @@
             <tbody>
             {% for timbre in timbres %}
                 <tr>
-                    <td>{{ timbre.id }}</td>
-                    <td>{{ timbre.nom }}</td>
-                    <td>{{ timbre.annee }}</td>
-                    <td>{{ timbre.date_creation }}</td>
-                    <td>{{ timbre.tirage }}</td>
-                    <td>{{ timbre.dimensions}}</td>
-                    <td>{{ timbre.certifie == 1 ? 'Oui' : 'Non' }}</td>
-                    <td>{{ timbre.description }}</td>
-                    <td>{{ conditions[timbre.condition_id]}}</td>
-                    <td>{{ couleurs[timbre.couleur_id]}}</td>
-                    <td>{{ pays[timbre.pays_id]}}</td>
-                    <td>{{ utilisateurs[timbre.utilisateur_id]}}</td>
+                    <td data-label="ID">{{ timbre.id }}</td>
+                    <td data-label="Nom">{{ timbre.nom }}</td>
+                    <td data-label="Année">{{ timbre.annee }}</td>
+                    <td data-label="Date de création">{{ timbre.date_creation }}</td>
+                    <td data-label="Tirage">{{ timbre.tirage }}</td>
+                    <td data-label="Dimensions">{{ timbre.dimensions }}</td>
+                    <td data-label="Certifié">{{ timbre.certifie == 1 ? 'Oui' : 'Non' }}</td>
+                    <td data-label="Description">{{ timbre.description }}</td>
+                    <td data-label="Condition">{{ conditions[timbre.condition_id] }}</td>
+                    <td data-label="Couleur">{{ couleurs[timbre.couleur_id] }}</td>
+                    <td data-label="Pays">{{ pays[timbre.pays_id] }}</td>
+                    <td data-label="Utilisateur">{{ utilisateurs[timbre.utilisateur_id] }}</td>
                     <td>
-                        <a class="bouton" href="{{base}}/timbre/view?id= {{timbre.id}}">View</a>
+                        <a class="bouton" href="{{base}}/timbre/view?id={{timbre.id}}">View</a>
                     </td>
                 </tr>
             {% endfor %} 
             </tbody>
         </table>
     </section>
+    <a class="vers-le-haut" href="#revenirEnHAut">Revenir en haut</a>
 {{include('layouts/footer.php')}}

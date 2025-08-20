@@ -1,34 +1,41 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const boutonHTML = document.getElementById('bouton-info');
-    const boutonSupprimer = document.querySelector('#bouton-supprimer');
-    console.log(boutonSupprimer);
-    
-        boutonHTML.addEventListener('click', function() {
-        
-            afficherSection('compte'); // Appel de la fonction pour afficher/masquer la section
-        });
+// Sélection HTML
+const boutonHTML = document.getElementById("bouton-info");
+const boutonSupprimer = document.querySelector("#bouton-supprimer");
 
-        if(boutonSupprimer){
-            boutonSupprimer.addEventListener('click', function(event){
-                event.preventDefault();
+// console.log("boutonHTML:", boutonHTML);
+// console.log("boutonSupprimer:", boutonSupprimer);
 
-                const confirmation = confirm('Voulez-vous vraiment supprimer votre compte ?');
+function init() {
+ 
+  if (boutonHTML) {
+    boutonHTML.addEventListener("click", function () {
+      afficherSection("compte");
+    });
+  }
 
-                if(confirmation){
-                    const form = boutonSupprimer.closest('form');
-                    form.submit();
-                }
-
-            });
+  if (boutonSupprimer) {
+    boutonSupprimer.addEventListener("click", function (event) {
+      event.preventDefault();
+      const confirmation = confirm("Voulez-vous vraiment supprimer votre compte ?");
+      if (confirmation) {
+        const form = boutonSupprimer.closest("form");
+        if (form) {
+          form.submit();
+        } else {
+          console.error("Aucun formulaire trouvé autour du bouton.");
         }
-});
-/**
- * fonction pour faire afficher et cacher les infos du compte utilisateur
- * @param {string} id 
- */
-function afficherSection(id) {
-    const section = document.getElementById(id);
-    if (section) {
-        section.classList.toggle('hidden');
-    }
+      }
+    });
+  }
 }
+
+function afficherSection(id) {
+  const section = document.getElementById(id);
+  if (section) {
+    section.classList.toggle("hidden");
+  }
+}
+
+ init();
+
+

@@ -38,6 +38,9 @@
 @import url("classes/redirection.css");
 @import url("classes/profil_liens.css");
 @import url("classes/liste.css");
+@import url("classes/vers-le-haut.css");
+@import url("classes/infos.css");
+@import url("classes/sectionVue.css");
 
 /* fiche */
 @import url("fiche/groupe-fiche.css");
