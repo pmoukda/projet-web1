@@ -16,7 +16,6 @@
     
     & .premiere_rangee{
         border-bottom: 2px solid var(--couleur-primaire);
-        padding: 10px 0;  
         justify-content: space-evenly;
         align-items: center;
     }

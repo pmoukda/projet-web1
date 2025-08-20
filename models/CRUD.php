@@ -129,8 +129,18 @@ public function selectAssoc($id= 'id', $value = 'nom') {
         }
 
     }
-
+    // Fonction select par champs
+     public function selectByField($field, $value){
+        $sql = "SELECT * FROM $this->table WHERE $field = :$field";
+        $stmt = $this->prepare($sql);
+        $stmt->bindValue(":$field", $value);
+        $stmt->execute();
     
+        return $stmt->fetchAll();
+        
+
+    }
+
 }
 
 

@@ -6,6 +6,7 @@ use App\Models\Condition;
 use App\Models\Couleur;
 use App\Models\Pays;
 use App\Models\Utilisateur;
+use App\Models\Images;
 use App\Providers\View;
 use App\Providers\Auth;
 use App\Providers\Validator;
@@ -74,7 +75,7 @@ class TimbreController{
             $insertTimbre = $timbre->insert($data);
             
             if($insertTimbre){
-                return View::redirect('timbre');
+                return View::redirect('images/create?timbre_id =' . $insertTimbre);
             }else{
                 return View::render('errors',['message' => 'Erreur 404']);
             }
@@ -102,8 +103,13 @@ class TimbreController{
     public function view($data){
         // var_dump($data);
         if(isset($data['id'])&& $data['id'] != null){
+            $_SESSION['timbre_id'] = $data['id'];
+
             $timbre = new Timbre;
             $selectedId = $timbre->selectId($data['id']);
+
+            $image = new Images;
+            $images = $image->selectByField('timbre_id', $data['id']);
             
             if($selectedId){
                 $condition_id = $selectedId['condition_id'];
@@ -126,7 +132,7 @@ class TimbreController{
                 $selectUser = $user->selectId($user_id);
                 $users = $selectUser['nom_utilisateur'];
                 
-                return View::render('timbre/view', ['timbre' => $selectedId, 'conditions' => $conditions, 'couleurs' => $couleurs, 'pays' => $pays, 'utilisateur' => $users]);
+                return View::render('timbre/view', ['timbre' => $selectedId, 'conditions' => $conditions, 'couleurs' => $couleurs, 'pays' => $pays, 'utilisateur' => $users, 'images' => $images]);
             }else{
                 return View::render('errors',['message' => 'Timbre non trouvé!']);
             }

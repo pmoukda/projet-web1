@@ -40,6 +40,7 @@
 @import url("classes/liste.css");
 @import url("classes/vers-le-haut.css");
 @import url("classes/infos.css");
+@import url("classes/sectionVue.css");
 
 /* fiche */
 @import url("fiche/groupe-fiche.css");
