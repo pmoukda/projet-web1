@@ -4,11 +4,9 @@
     gap: var(--espacement-courant);
 }
 @media screen and (max-width:920px) {
-    .profil_liens{
-        flex-direction: column;
-    }
     .profil_liens a{
         width: 100%;
         text-align: center;
+      
     }
 }

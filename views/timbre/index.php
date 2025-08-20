@@ -36,7 +36,7 @@
                     <td data-label="Pays">{{ pays[timbre.pays_id] }}</td>
                     <td data-label="Utilisateur">{{ utilisateurs[timbre.utilisateur_id] }}</td>
                     <td>
-                        <a class="bouton" href="{{base}}/timbre/view?id= {{timbre.id}}">View</a>
+                        <a class="bouton" href="{{base}}/timbre/view?id={{timbre.id}}">View</a>
                     </td>
                 </tr>
             {% endfor %} 

@@ -16,7 +16,12 @@
   font-weight: bold;
 }
 
-@media screen and (max-width: 1366px) {
+.liste img{
+  width: 100%;
+  max-width:150px;
+}
+
+@media screen and (max-width: 1524px) {
   .liste table,
   .liste thead,
   .liste tbody,
@@ -58,9 +63,20 @@
     font-weight: bold;
     color: var(--couleur-accent);
   }
+  .liste img{
+  max-width:200px;
+  width: 100%;
 }
+}
+@media screen and (max-width: 425px) {
 
+  .liste td{
+    text-align: right;
+  }
 
-
+.liste td::before {
+  text-align: left;
+}
+}
 
 

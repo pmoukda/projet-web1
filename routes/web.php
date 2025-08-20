@@ -4,6 +4,7 @@ use App\Controllers\HomeController;
 use App\Controllers\UtilisateurController;
 use App\Controllers\AuthController;
 use App\Controllers\TimbreController;
+use App\Controllers\ImagesController;
 // use App\Controllers\Enchere;
 
 //Routes pour la page accueil
@@ -28,6 +29,15 @@ Route::post('/timbre/store', 'TimbreController@store');
 Route::get('/timbre/edit', 'TimbreController@edit');
 Route::post('/timbre/edit', 'TimbreController@update');
 Route::post('/timbre/delete', 'TimbreController@delete');
+
+//Routes pour les images
+Route::get('/images', 'ImagesController@index');
+Route::get('/images/create', 'ImagesController@create');
+Route::get('/images/view', 'ImagesController@view');
+Route::post('/images/store', 'ImagesController@store');
+Route::get('/images/edit', 'ImagesController@edit');
+Route::post('/images/edit', 'ImagesController@update');
+Route::post('/images/delete', 'ImagesController@delete');
 
 // Routes pour  les enchères
 
