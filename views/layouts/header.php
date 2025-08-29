@@ -29,17 +29,17 @@
                     </ul>
                 </li>
                 <li class="sous-menu">
-                   <a href="portail-enchere.html">Portail enchères <i class="fas fa-chevron-down"></i></a>
+                   <a href="#">Portail enchères <i class="fas fa-chevron-down"></i></a>
                     <ul class="menu-deroulant">
-                        <li><a href="#">En cours</a></li>
-                        <li><a href="#">Archivées</a></li>
+                        <li><a href="{{base}}/enchere">En cours</a></li>
+                        <li><a href="{{base}}/enchere?filtre=archivees">Archivées</a></li>
                     </ul>
                 </li>
                 <li class="sous-menu">
                     <a href="#">Actualités <i class="fas fa-chevron-down"></i></a>
                     <ul class="menu-deroulant">
                         <li><a href="#">Timbres</a></li>
-                        <li><a href="fiche-enchere.html">Enchères</a></li>
+                        <li><a href="{{base}}/enchere">Enchères</a></li>
                         <li><a href="#">Bridge</a></li>
                     </ul>
                 </li>
@@ -62,5 +62,6 @@
             <input type="search" id="recherche" name="recherche" placeholder="Recherche de timbres...">
             <img class="icone-form" src="https://s2.svgbox.net/octicons.svg?ic=search&color=000" alt="icone recherche" width="32" height="32">
             </form>
+            <h1>{{data}}</h1>
     </header>
     <main>

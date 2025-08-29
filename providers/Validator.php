@@ -99,8 +99,8 @@ public function yesNo() {
     }
 
     public function lower($limit) {
-        if ($this->value <= $limit) {
-            $this->errors[$this->key]="$this->name doit être supérieur ou égal à $limit.";
+        if ($this->value < $limit) {
+            $this->errors[$this->key]="$this->name doit être supérieur à $limit.";
         }
         return $this;
     }

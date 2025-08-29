@@ -46,9 +46,12 @@
     }
     &.petite {
         width: 200px;
-        overflow: hidden;
-        
+        overflow: hidden;   
     } 
+
+    & a{
+        text-align: center;
+    }
 }
 @media screen and (max-width:540px) {
     .carte{

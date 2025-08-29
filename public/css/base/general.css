@@ -38,7 +38,7 @@ html {
 }
 
 * + :is(h1, h2, h3, h4, span) {
-  margin-top: var(--espacement-regulier);
+  margin-top: var(--espacement-courant);
 }
 
 body {
@@ -48,18 +48,19 @@ body {
 
 main {
   padding: 0 80px;
-  /* max-width: 1500px; 
-  margin: auto;  */
+  max-width: 1500px; 
+  margin: auto; 
   box-sizing: border-box;
 
 }
 
 main > * {
-  margin-top: var(--espacement-moyen);
+  margin-top: var(--espacement-petit);
 }
 
 section > * {
-  margin-bottom: var(--espacement-tres-petit);
+  /* margin-bottom: var(--espacement-tres-petit); */
+  margin-top: var(--espacement-courant);
 }
 
 ul {
@@ -79,6 +80,9 @@ p,
 span {
   line-height: 1.525;
   margin-top: var(--espacement-tres-petit);
+}
+hr{
+  border-color:var(--couleur-border);
 }
 
 @media screen and (max-width: 1280px) {

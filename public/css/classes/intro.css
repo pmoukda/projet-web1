@@ -1,0 +1,18 @@
+.intro{
+    background-image: url(https://tse3.mm.bing.net/th/id/OIP.XHS7aByLiXcVaehU0OKNhAHaHa?rs=1&pid=ImgDetMain&o=7&rm=3);
+    margin-top: var(--espacement-large);
+    padding: var(--espacement-petit);
+}
+
+.intro div{
+    margin: auto;
+    background-color: var(--couleur-fond);
+    padding: var(--espacement-courant);
+    max-width: 1000px;
+    
+}
+@media screen and (max-width: 500px) {
+    .intro{
+        padding: 0;
+    }
+}

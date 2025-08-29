@@ -9,6 +9,10 @@ use App\Models\Pays;
 use App\Providers\View;
 use App\Providers\Validator;
 use App\Providers\Auth;
+use App\Models\Timbre;
+use App\Models\Mise;
+use App\Models\Images;
+use App\Models\Enchere;
 
 class UtilisateurController{
 
@@ -177,11 +181,17 @@ class UtilisateurController{
     }
     public function view($data){
         Auth::session();
+            if (!isset($_SESSION['user_id'])) {
+        return View::render('errors', ['message' => "Utilisateur non connecté."]);
+    }
+        //recupérer le id
+        $user_id = $_SESSION['user_id'];
+        // print_r($user_id); die();
         
         if(isset($data['id']) && $data['id'] != null){
             $user = new Utilisateur;
             $selectId = $user->selectId($data['id']);
-            // print_r($selectId);
+            // print_r($selectId);die();
             if($selectId){
                 $ville_id = $selectId['ville_id'];
                 $ville = new Ville;
@@ -196,9 +206,29 @@ class UtilisateurController{
                 $privilege_id = $selectId['privilege_id'];
                 $privilege = new Privilege;
                 $privileges = $privilege->selectId($privilege_id) ;
+
+                // joindre la table mise, timbre, enchere et images
+                $timbre = new Timbre;
+                $timbres = $timbre->selectByField('utilisateur_id', $user_id);
+
+                $mise = new Mise;
+                $mises = $mise->selectByField('utilisateur_id', $user_id);
+
+                $encheres = [];
+                $imagesParTimbre = [];
+
+                $enchere = new Enchere;
+                $images = new Images;
+
+                foreach ($timbres as $t) {
+                    $encheres[$t['id']] = $enchere->selectByField('timbre_id', $t['id']);
+                    $imagesParTimbre[$t['id']] = $images->selectByField('timbre_id', $t['id']);
+                }
+                // print_r($imagesParTimbre);die();
+
                 
                 
-                return View::render('utilisateur/view', ['utilisateur' => $selectId, 'ville' => $villes, 'pays' => $pays, 'privilege' => $privileges]);
+                return View::render('utilisateur/view', ['utilisateur' => $selectId, 'ville' => $villes, 'pays' => $pays, 'privilege' => $privileges,'timbres' => $timbres,'mises' => $mises, 'images' => $imagesParTimbre, 'encheres' => $encheres]);
                 
             }else{
                 return View::render('errors',['message' => 'Utilisateur non trouvé!']);
@@ -220,5 +250,7 @@ class UtilisateurController{
             }
         }
     }
+
+  
     
 }

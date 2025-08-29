@@ -1,6 +1,7 @@
 .plus-article{
   max-width: 100%;
   width: 100%;
+  margin-top: var(--espacement-Xlarge);
  
   & h2{
     border-bottom: 1px solid var(--couleur-border);

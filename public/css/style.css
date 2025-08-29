@@ -35,12 +35,14 @@
 @import url("classes/lien-filtre.css");
 @import url("classes/plus-article.css");
 @import url("classes/contact.css");
-@import url("classes/redirection.css");
 @import url("classes/profil_liens.css");
 @import url("classes/liste.css");
 @import url("classes/vers-le-haut.css");
 @import url("classes/infos.css");
 @import url("classes/sectionVue.css");
+@import url("classes/bio.css");
+@import url("classes/intro.css");
+@import url("classes/infolettre.css");
 
 /* fiche */
 @import url("fiche/groupe-fiche.css");
@@ -59,9 +61,11 @@
 @import url("components/bouton.css");
 @import url("components/coup-coeur.css");
 @import url("components/media.css");
+@import url("components/petite-carte.css");
 
 /* Exceptions */
 @import url("exceptions/invisible.css");
 @import url("exceptions/error.css");
 @import url("exceptions/hidden.css");
+@import url("exceptions/inactif.css");
 

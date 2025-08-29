@@ -1,0 +1,13 @@
+.petite-carte{
+    border: 1px solid var(--couleur-border);
+    max-width: 30ch;
+    padding: var(--espacement-courant);
+    background-color: rgb(9, 4, 49);
+    color: var(--couleur-primaire);
+    aspect-ratio: 7/8;
+    & img{
+        max-width: 100%;
+        width: 100px;
+        object-fit: cover;
+    }
+}

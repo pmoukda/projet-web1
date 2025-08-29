@@ -58,6 +58,7 @@ class TimbreController{
     } 
     
     public function store($data){
+        $_SESSION['timbre_id'] = $data['id'];
         $validator = new Validator;
         $validator->field('nom', $data['nom'], 'le nom')->min(2)->max(100)->required();
         $validator->field('annee', $data['annee'], "l'année")->validateYear();
@@ -75,7 +76,7 @@ class TimbreController{
             $insertTimbre = $timbre->insert($data);
             
             if($insertTimbre){
-                return View::redirect('images/create?timbre_id =' . $insertTimbre);
+                return View::redirect('timbre');
             }else{
                 return View::render('errors',['message' => 'Erreur 404']);
             }

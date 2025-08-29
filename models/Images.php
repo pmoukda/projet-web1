@@ -9,7 +9,7 @@ class Images extends CRUD {
     protected $fillable = ['image_principale', 'timbre_id', 'liens_images'];
 
 
-       final public function selectbyTimbreId($field = 'timbre_id', $order = 'asc'){
+       final public function selectbyTimbreId($field = 'timbre_id', $order = 'desc'){
         if($field == null){
             $field = $this->primaryKey;
         }

@@ -1,13 +1,17 @@
-{{include('layouts/header.php', {title:'Timbre view'})}}
+{{include('layouts/header.php', {title:'Enchere view'})}}
     <section class="sectionVue">
-        <p class="salutation">Bonjour <strong>{{utilisateur.nom}} !</strong></p>
-        <h1>Détails du timbre</h1>
+     <div class="lien-filtre">
+            <small class="lien">
+                <a href="{{base}}/home">Accueil</a>/<a href="{{base}}/enchere">En cours</a>/<a href="{{base}}/enchere/view?id={{enchere.id}}">{{ pays }}</a>/<a href="{{base}}/enchere">{{conditions}}</a>
+            </small>
+            <small>ID: {{ encheres.id }}</small>
+        </div>
         <div class="conteneur-principal">
                     <div class="caroussel">
                     <div class="zone-image">
                     {% for image in images %}
                         {% if image.image_principale == 1 %}
-                            <img class="grande-image" src="{{asset}}/img/{{image.liens_images}}" alt="{{image.liens_images}}">
+                            <img class="grande-image" src="{{asset}}/img/{{image.liens_images}}" alt="Image principale">
                         {% endif %}
                     {% endfor %}
                         <div class="fleches-direction">
@@ -17,13 +21,13 @@
                     </div>
                     <div class="miniatures">
                      {% for image in images %}
-                        <img class="image-petite" src="{{asset}}/img/{{image.liens_images}}" alt="{{image.liens_images}}">
+                        <img class="image-petite" src="{{asset}}/img/{{image.liens_images}}" alt="Image secondaire">
                     {% endfor %}
                     </div>
                 </div>
                 <div class="groupe-fiche">
                     <div class="groupe-titre">
-                        <h1 class="h2">{{ timbre.nom }}</h1>
+                        <h1 class="h2">{{ timbres.nom }}</h1>
                     </div>
                     <div class="fiche">
                         <div class="onglet" id="onglet_detail">
@@ -38,21 +42,37 @@
                             </div>
                             <div class="sous-onglet">
                                 <div class="premiere_rangee">
-                                    <p><strong>Enchère actuelle: $15.75 </strong></p>
-                                    <p>Offres: 3</p>
+                                {% if derniereMise %}
+                                    <p><strong>Enchère actuelle: ${{ derniereMise.prix }}</strong></p>
+                                {% else %}
+                                    <p><strong>Enchère actuelle: ${{ encheres.prix_plancher }}</strong></p>
+                                {% endif %}
+                                <p>Offres : {{ nombreOffres }}</p>
                                 </div>
                                 <div class="deuxieme_rangee">
                                     <div>
-                                        <p>Vendeur: {{ utilisateur }}</p>
-                                        <p class="temps">Temps restant: 8h 20m </p>
+                                        <p>Vendeur: {{ utilisateurs }} </p>
+                                        <p class="temps">Temps restant: {{temps}} </p>
                                     </div>
-                                    <div>
-                                        <p><strong>Enchérir</strong></p>
-                                        <label class="invisible" for="enchere">Enchere</label>
-                                        <input type="text" id="enchere" name="enchere" placeholder="$CA">
-                                        <p>Enchère minimum: $15.75</p>
-                                    </div>
-                                    <button class="bouton rouge special">Faire une offre</button>
+                                    <form class="formulaire-fiche" action="{{base}}/mise/store" method="post">
+                                        <div>
+                                            <p><strong>Enchérir</strong></p>
+                                            <label class="invisible" for="prix">Enchère</label>
+                                            <input type="number" id="prix" name="prix" step="0.01" placeholder="$CA" value="{{mise.prix ?? '' }}">
+                                            {% if errors.prix is defined %}
+                                                {% for error in errors %}
+                                                    <p class="error">{{ error }}</p>
+                                                {% endfor %}
+                                            {% endif %}
+                                           {% if derniereMise %}
+                                                <p>Enchère minimum: ${{ derniereMise.prix }}</p>
+                                            {% else %}
+                                                <p>Enchère minimum: ${{ encheres.prix_plancher }}</p>
+                                            {% endif %}
+                                            <input type="hidden" name="enchere_id" value="{{ encheres.id }}">
+                                        </div>
+                                        <button class="bouton rouge special" type="submit">Enchérir</button>
+                                    </form>
                                 </div>
                                 <div class="troisieme_rangee">
                                     <div>
@@ -62,7 +82,7 @@
                                         <img src="https://s2.svgbox.net/payments.svg?ic=amex&color=000" width="32" height="32" alt="amex">
                                     </div>
                                     <p>Annonce vue 50 fois</p>
-                                    <div class="coup-coeur">Ajouter à ma favorie
+                                    <div class="coup-coeur" data-id="{{ encheres.id }}">Ajouter à ma favorie
                                         <img class="icon" src="https://s2.svgbox.net/hero-outline.svg?ic=heart&color=000" width="23" height="23" alt="icon">
                                     </div>
                                 </div>
@@ -86,16 +106,16 @@
                                 <div class="deuxieme_rangee">
                                     <div>
                                         <p><strong>Pays:</strong> {{ pays }}</p>
-                                        <p><strong>Année:</strong> {{ timbre.annee }}</p>
-                                        <p><strong>Tirage:</strong> {{ timbre.tirage }}</p>
-                                        <p><strong>Dimensions:</strong> {{ timbre.dimensions }}</p>
+                                        <p><strong>Année:</strong> {{ timbres.annee }}</p>
+                                        <p><strong>Tirage:</strong> {{ timbres.tirage }}</p>
+                                        <p><strong>Dimensions:</strong> {{ timbres.dimensions }}</p>
                                         <p><strong>Condition:</strong> {{ conditions }}</p>
                                         <p><strong>Couleur:</strong> {{ couleurs }}</p>
-                                        <p><strong>Certifié:</strong> {{ timbre.certifie == 1 ? 'Oui' : 'Non' }}</p>
-                                        <p><strong>Numéro de catalogue:</strong> {{timbre.id}}</p>
+                                        <p><strong>Certifié:</strong> {{ timbres.certifie == 1 ? 'Oui' : 'Non' }}</p>
+                                        <p><strong>Numéro de catalogue:</strong> {{timbres.id}}</p>
                                     </div>
                                     <div>
-                                        <p>{{ timbre.description }}</p>
+                                        <p>{{ timbres.description }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -132,8 +152,8 @@
                                 </div>
                                 <div class="deuxieme_rangee">
                                     <div>
-                                        <p><strong>Vendeur:</strong> {{ utilisateur }}</p>
-                                        <p><strong>Incrit depuis le:</strong> 20-05-2016</p>
+                                        <p><strong>Vendeur:</strong> {{ utilisateurs }}</p>
+                                        <p><strong>Incrit depuis le:</strong> {{createur.date_creation|date('Y-m-d')}}</p>
                                         <p><strong>Reaction:</strong> 100%</p>
                                     </div>
                                 </div>
@@ -151,7 +171,7 @@
                             </div>
                             <div class="sous-onglet">
                                 <div class="premiere_rangee">
-                                    <p><strong>Localisation de l&#39article:</strong> Montréal, Canada</p>
+                                    <p><strong>Localisation de l&#39article:</strong> {{utilisateur_ville }}, {{ utilisateur_pays }}</p>
                                     <p><strong>Expédition vers:</strong> Dans le monde</p>
                                 </div>
                                 <div>
@@ -160,20 +180,13 @@
                                 <div class="deuxieme_rangee">
                                     <form class="formulaire-fiche">
                                         <div class="champ">
-                                            <label for="pays">Sélectionner un pays</label>
-                                            <select name="pays" id="pays">
-                                                <option value="">Tous pays</option>
-                                                <option value="1">Angleterre</option>
-                                                <option value="6">Bahamas</option>
-                                                <option value="2">Canada</option>
-                                                <option value="3">Chine</option>
-                                                <option value="4">États-Unis</option>
-                                                <option value="5">France</option>
-                                                <option value="7">Japon</option>
-                                                <option value="8">Nouvelle-Guinée</option>
-                                                <option value="9">Nouvelle-Zélande</option>
-                                                <option value="10">Suisse</option>
-                                            </select>
+                                      <label for="pays">Pays</label>
+                                        <select name="pays_id" id="pays_id" required>
+                                            <option value="">Choisir un pays</option>
+                                            {% for pays in pays_listes %}
+                                                <option value="{{pays.id}}" {% if pays.id == timbres.pays_id %} selected {% endif %}>{{ pays.nom_pays }}</option>
+                                            {% endfor %}
+                                        </select>
                                         </div>
         
                                         <div class="champ">
@@ -251,18 +264,25 @@
                     </div>
                 </div>
             </div>
-             <div class="profil_liens">
-                <a href="{{ base }}/timbre/edit?id={{ timbre.id }}" class="bouton jaune ">Modifier</a>
-                <form method="POST" action="{{ base }}/timbre/delete">
-                    <input type="hidden" name="id" value="{{ timbre.id }}">
-                    <button type="submit" id="bouton-supprimer" class="bouton rouge">Supprimer</button>
-                </form>
-                {% for image in images %}
-                    <a class="bouton blanc" href="{{ base }}/images/view?id={{ image.id }}">Voir image</a>
-                {% endfor %}
-                <a class="bouton blanc" href="{{base}}/images/create">Ajouter des images</a>
-                <a class="bouton blanc" href="{{base}}/timbre">Retour à la liste</a>
-                <a class="bouton blanc" href="{{base}}/utilisateur/view?id={{timbre.utilisateur_id}}">Retour au profil membre</a>
-            </div>
     </section>
+     <section class="plus-article">
+            <h2 class=" h3 groupe-titre">Plus d&#39article provenant du vendeur {{utilisateurs}}</h2>
+            <div class="conteneur-petite-carte">
+            {% for enchere in liste_encheres %}
+                <article class="carte petite">
+                    {% for image in images %}
+                        {% if image.timbre_id == enchere.id and image.image_principale == 1 %}
+                            <img class="grande-image" src="{{asset}}/img/{{image.liens_images}}" alt="Image principale">
+                        {% endif %}
+                    {% endfor %}   
+                    <h3 class="h4">{{ enchere.nom }}</h3>
+                    <span>CA${{ enchere.prix_plancher}}</span>
+                    <small>Offres: 2</small>
+                    <img class="icon" src="https://s2.svgbox.net/hero-outline.svg?ic=heart&color=7A0113" width="30" height="30" alt="icon">
+                    <a class="bouton rouge" href="{{base}}/enchere/view?id={{ encheres.id }}">Faire une offre</a>
+                </article>
+            {% endfor %}
+            </div>
+            <a class="bouton blanc" href="#">Voir plus</a>
+        </section>
 {{include('layouts/footer.php')}}

@@ -113,6 +113,29 @@ class ImagesController{
         }
     }
     
+    public function view($data){
+        // var_dump($data);
+        if(isset($data['id'])&& $data['id'] != null){
+            $_SESSION['timbre_id'] = $data['id'];
+            
+            $image = new Images;
+            $selectedId = $image->selectId($data['id']);
+            
+            if($selectedId){
+                $timbre_id = $selectedId['timbre_id'];
+                $timbre = new Timbre;
+                $selectTimbre = $timbre->selectId($timbre_id);
+                
+                return View::render('images/view', ['images' => $selectedId,  'timbre' => $selectTimbre]);
+            }else{
+                return View::render('errors',['message' => 'Images non trouvé!']);
+            }
+            
+        }else{
+            return View::render('errors', ['message' =>'Erreur 404']);
+        }
+    }
+    
     public function edit($data){
         if(isset($data['id'])&& $data['id'] != null){
             $image = new Images;
